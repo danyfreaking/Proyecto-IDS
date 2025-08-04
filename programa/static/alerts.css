@@ -1,0 +1,135 @@
+/* Estilo base para los iconos en las alertas */
+.alert-line i.fas {
+    font-size: 2.2em; /* Tamaño más pequeño y adecuado */
+    color: #f01515;
+    margin-right: 10px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo oscuro suave */
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.5s ease;  /* Transición suave */
+}
+
+/* Animación de resplandor suave y movimiento de iconos */
+.alert-line.open-port i.fas {
+    animation: glowAnimation 2s ease-in-out infinite; /* Resplandor suave */
+    color: #00bcd4;  /* Color azul suave */
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.6), 0 0 30px rgba(0, 188, 212, 0.3); /* Resplandor suave */
+}
+
+/* Animación de resplandor suave */
+@keyframes glowAnimation {
+    0% {
+        transform: scale(1);  /* Tamaño normal */
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
+    }
+    50% {
+        transform: scale(1.05); /* Ligeramente más grande */
+        box-shadow: 0 0 20px rgba(0, 188, 212, 0.7); /* Resplandor más fuerte */
+    }
+    100% {
+        transform: scale(1);  /* Vuelve al tamaño original */
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
+    }
+}
+
+/* Estilo para el contenedor de las alertas */
+.console-output {
+    text-align: left;
+    height: 400px;
+    overflow-y: auto;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 30px rgba(0, 188, 212, 0.5);
+}
+
+/* Estilo para el contenedor de la consola */
+.console {
+    margin-top: 20px;
+    padding: 20px;
+    background: #111;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.7);
+    border-radius: 10px;
+}
+
+/* Estilo para el texto de las alertas */
+.alert-line {
+    /* Define el contenedor como un contenedor flexible (flexbox) */
+    display: flex;
+        /* Alinea los elementos dentro del contenedor de forma vertical en el centro */
+    align-items: center;
+        /* Añade un margen de 20px en la parte inferior */
+    margin-bottom: 20px;
+        /* Establece el tamaño de la fuente a 18px */
+    font-size: 18px;
+        /* Define el color del texto como un blanco muy claro */
+    color: #f5f5f5;
+        /* Establece el fondo con un color negro con 30% de opacidad */
+    background: rgba(0, 0, 0, 0.3);    
+    /* Añade un relleno interno de 12px arriba y abajo, y 15px a los lados */
+    padding: 12px 15px;    
+    
+    /* Redondea las esquinas del contenedor con un radio de 8px */
+    border-radius: 8px;
+    /* Aplica una sombra tenue alrededor del contenedor (sombra blanca con 10% de opacidad) */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);    
+    /* Aplica una transición suave para los cambios en transform y box-shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Efecto de resplandor suave y movimiento al pasar el ratón sobre la alerta */
+.alert-line:hover {
+    transform: translateX(8px);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+}
+
+/* Fondo y texto cuando no hay alertas */
+.console-output:empty {
+    text-align: center;
+    color: #08f513;
+    font-style: italic;
+}
+
+/* Estilo para el título y la imagen flotante */
+.title-icon {
+    margin-right: 15px;
+    font-size: 50px; /* Tamaño del ícono */
+    color: #52fade; /* Color que desees */
+    animation: floating 2s ease-in-out infinite;
+}
+
+
+.title-icon {
+    margin-right: 15px;  /* Espacio entre la imagen y el título */
+    width: 50px;
+    height: 50px;
+    animation: floating 2s ease-in-out infinite; /* Aplicar animación de movimiento flotante */
+}
+
+
+/* Animación flotante */
+@keyframes floating {
+    0% {
+        transform: translateY(0); /* Posición inicial */
+    }
+    50% {
+        transform: translateY(-10px); /* Desplazamiento hacia arriba */
+    }
+    100% {
+        transform: translateY(0); /* Regresa a la posición original */
+    }
+}
+
+
+
+
+/* Estilo específico para el icono con la clase custom-icon */
+.alert-line i.fas.custom-icon {
+    color: #00bcd4;  /* Cambia el color a azul */
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.6), 0 0 30px rgba(0, 188, 212, 0.3); /* Resplandor azul */
+}
+

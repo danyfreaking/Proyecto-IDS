@@ -1,0 +1,141 @@
+/* Estilos generales */
+body {
+    background: #0e4377;
+    color: white;
+    text-align: center;
+    
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.terminal-container {
+    max-width: 80%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 20px cyan;
+    border: 2px solid cyan;
+}
+
+/* Contenedor de los botones */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los botones */
+    margin-bottom: 20px; /* Espacio debajo de los botones */
+}
+
+/* Títulos */
+.title {
+    font-size: 2rem;
+    text-shadow: 0 0 5px cyan;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #00e5ff;
+}
+
+/* Lista de dispositivos */
+.device-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.device-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.device-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px cyan;
+}
+
+.device-info {
+    text-align: left;
+}
+
+.device-status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Colores para los dispositivos */
+.autorizado {
+    border-left: 5px solid #00ff00;
+}
+.autorizado .device-status {
+    color: #00ff00;
+}
+
+.malicioso {
+    border-left: 5px solid red;
+}
+.malicioso .device-status {
+    color: red;
+}
+
+.btn {
+    
+    display: block;
+    width: 30%; /* Establece un ancho para el botón */
+    max-width: 200px; /* Limita el ancho máximo */
+    padding: 10px;
+    color: white;  
+     background: linear-gradient(45deg, cyan, blue);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px cyan;
+    transition: 0.3s;
+    text-align: center; /* Asegura que el texto dentro del botón esté centrado */
+    text-decoration: none;
+
+
+}
+
+.btn:hover {
+box-shadow: 0 0 10px white;
+}
+
+.back {
+background: linear-gradient(45deg, rgb(212, 60, 0), rgb(236, 233, 40)); /* Azul y verde */
+text-align: center;
+text-decoration: none;
+}
+
+
+/*icono*/
+/* Estilo para el icono de dispositivo USB */
+.title-icon {
+    margin-right: 15px;
+    font-size: 50px;
+    color: #FF5722; /* Naranja */
+    animation: glow-trail 1.5s ease-in-out infinite;
+}
+
+/* Animación de rastro de resplandor */
+@keyframes glow-trail {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 87, 34, 0.6);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(255, 87, 34, 1);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(255, 87, 34, 0.6);
+    }
+}
+

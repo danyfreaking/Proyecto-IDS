@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escaneo de Puertos</title>
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="/static/alerts.css">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <h1 class="title">
+
+            <i class="fa fa-network-wired title-icon"></i>
+            
+            ESCANEO DE PUERTOS
+            <i class="fa fa-satellite-dish title-icon"></i>
+        </h1>
+        
+
+        <div class="form-container">
+            <form method="post">
+                <input type="text" name="target_ip" placeholder="IP a escanear" required><br>
+                <button type="submit" class="btn">Iniciar Escaneo</button>
+            </form>
+            <a href="/" class="btn back" onclick="clearAlerts()">Volver al Menú</a>
+        </div>
+
+        <div class="console">
+            <h3 class="alert-title">
+                <img id="police-siren" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-siren-police-flaticons-lineal-color-flat-icons.png" alt="Police Siren">
+                Alertas Recientes:
+                <img id="police-siren" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-siren-police-flaticons-lineal-color-flat-icons.png" alt="Police Siren">
+            </h3>
+            <div id="port_scan_alerts" class="console-output">
+                <!-- Alertas del escaneo -->
+                {% for alert in alerts["port_scan_alerts"] %}
+                    <p class="alert-line">
+                        {{ alert|safe }}  <!-- Usar 'safe' para permitir que se renderice el HTML de las alertas -->
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+      
+      // Función para actualizar las alertas dinámicamente desde el servidor
+        function fetchPortScanAlerts() {
+            fetch('/get_alerts')
+                .then(response => response.json())
+                .then(data => {
+                    let alertsDiv = document.getElementById('port_scan_alerts');
+                    alertsDiv.innerHTML = ''; // Limpiar cualquier alerta previamente mostrada
+
+                    data.port_scan_alerts.forEach(alert => {
+                        let alertElem = document.createElement('p');
+                        alertElem.classList.add("alert-line");
+                        alertElem.innerHTML = alert; // Usar innerHTML para renderizar el HTML (iconos)
+                        alertsDiv.appendChild(alertElem);
+                    });
+                });
+        }
+
+        fetchPortScanAlerts();
+
+        function clearAlerts() {
+        fetch('/clear_alerts', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                // Limpiar las alertas en el frontend
+                document.getElementById('alert-container').style.display = 'none';
+                
+                // Redirigir al menú o hacer lo que necesites
+                window.location.href = '/'; // Redirige al menú o la página principal
+            }
+        })
+        .catch(error => console.log(error));
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+/* General */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle, #003f64, #000d1a);  /*002f44*/
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Sección izquierda */
+.left {
+    max-width: 50%;
+}
+
+.left h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 7px rgb(6, 255, 255);
+}
+
+.left p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Organización de los botones en dos filas */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn {
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    padding: 12px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 7px rgba(0, 198, 255, 0.8);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    box-shadow: 0 0 20px rgba(0, 198, 255, 1);
+}
+
+/* Sección derecha (Escudo y candado) */
+.right {
+    position: relative;
+    width: 500px;
+    height:500px;
+}
+
+.shield-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Escudo con luces */
+.shield {
+    width: 80%;
+    filter: drop-shadow(0 0 15px cyan);
+    animation: pulse 2s infinite ease-in-out, glow 3s infinite alternate;
+}
+
+/* Candado con efecto de luz */
+.lock {
+    position: absolute;
+    width: 50%;
+    animation: bounce 1.5s infinite, glow-lock 1.5s infinite alternate;
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Efecto de neón para el escudo */
+@keyframes glow {
+    0% { filter: drop-shadow(0 0 10px cyan); }
+    100% { filter: drop-shadow(0 0 25px cyan); }
+}
+
+/* Efecto de parpadeo para el candado */
+@keyframes glow-lock {
+    0% { filter: drop-shadow(0 0 5px cyan); }
+    100% { filter: drop-shadow(0 0 15px cyan); }
+}
+
+/* Círculo holográfico */
+.hologram {
+    position: absolute;
+    bottom: -30px; /* Ajuste para centrarlo debajo del escudo */
+    width: 300px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.6), rgba(0, 255, 255, 0.2), transparent);
+    border-radius: 50%;
+    box-shadow: 0 0 15px cyan;
+    filter: blur(8px);
+    animation: glow-holo 2s infinite alternate;
+}
+
+/* Efecto de brillo pulsante */
+@keyframes glow-holo {
+    0% { box-shadow: 0 0 15px cyan; }
+    100% { box-shadow: 0 0 30px white; }
+}
+
+
+

@@ -1,0 +1,10 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="grad1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:rgb(0,174,255); stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(0,78,146); stop-opacity:1" />
+        </radialGradient>
+    </defs>
+    <path fill="url(#grad1)" d="M100,10 L170,40 L170,90 Q170,160 100,190 Q30,160 30,90 L30,40 Z" stroke="cyan" stroke-width="4"/>
+    <animateTransform attributeType="XML" attributeName="transform" type="scale" values="1;1.05;1" dur="2s" repeatCount="indefinite"/>
+</svg>

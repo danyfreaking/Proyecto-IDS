@@ -1,0 +1,12 @@
+ C:/Users/TOSHIBA/AppData/Local/Programs/Python/Python313/python.exe -m pip install pywinusb      
+Collecting pywinusb
+
+
+C:/Users/TOSHIBA/AppData/Local/Programs/Python/Python313/python.exe -m pip install pyusb
+
+
+
+C:/Users/TOSHIBA/AppData/Local/Programs/Python/Python313/python.exe -m pip install pefile
+C:/Users/TOSHIBA/AppData/Local/Programs/Python/Python313/python.exe -m pip install requests
+
+

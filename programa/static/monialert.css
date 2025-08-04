@@ -1,0 +1,142 @@
+/* Estilo para el contenedor de la alerta */
+.alert-line {
+    display: flex; /* Contenedor flexible */
+    flex-direction: column; /* Alinea los elementos de arriba a abajo */
+    align-items: center;
+    margin-bottom: 10px; /* Espacio entre alertas */
+    font-size: 14px; /* Tamaño de la fuente */
+    color: #f5f5f5; /* Color del texto */
+    background: rgba(0, 0, 0, 0.3); /* Fondo oscuro */
+    padding: 12px 15px; /* Ajuste de relleno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1); /* Sombra tenue */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición suave */
+    max-width: 800px; /* Ancho máximo */
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    margin-left: auto; /* Centrado horizontal */
+    margin-right: auto; /* Centrado horizontal */
+}
+
+/* Estilo para el encabezado de la alerta */
+.alert-header {
+    display: flex; /* Disposición en fila */
+    align-items: center; /* Centrar verticalmente */
+    margin-bottom: 8px; /* Espacio entre icono y título */
+}
+
+/* Estilo para el icono de la alerta */
+.alert-icon {
+    font-size: 1.8em; /* Tamaño del ícono */
+    color: #f01515; /* Color del icono */
+    margin-right: 10px; /* Espacio entre el ícono y el título */
+}
+
+/* Estilo para el título de la alerta */
+.alert-title {
+    font-size: 1.3em; /* Tamaño de texto más grande */
+    font-weight: bold;
+    color: #f5f5f5; /* Color del texto */
+    margin-bottom: 5px; /* Reducir el espacio con las IPs */
+}
+
+/* Estilo para el cuerpo de la alerta */
+.alert-body {
+    font-size: 1.1em; /* Tamaño de fuente */
+    color: #dcdcdc; /* Color gris */
+    margin-top: 5px;
+}
+
+/* Contenedor de las direcciones IP (origen y destino) */
+.alert-ips {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Estilo para la IP de origen */
+.alert-origin {
+    color: #ff8c00; /* Naranja */
+    margin-right: 15px;
+}
+
+/* Estilo para la IP de destino */
+.alert-destination {
+    color: #52fade; /* Azul */
+}
+
+/* Efecto de resplandor suave al pasar el ratón sobre la alerta */
+.alert-line:hover {
+    transform: translateX(6px);
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+}
+
+/* Animación de resplandor suave */
+@keyframes glowAnimation {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 188, 212, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
+    }
+}
+
+/* Estilo para el contenedor de las alertas */
+.console-output {
+    text-align: left;
+    height: 400px;
+    overflow-y: auto;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 30px rgba(0, 188, 212, 0.5);
+}
+
+/* Estilo para el contenedor de la consola */
+.console {
+    margin-top: 20px;
+    padding: 20px;
+    background: #111;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.7);
+    border-radius: 10px;
+}
+
+/* Fondo y texto cuando no hay alertas */
+.console-output:empty {
+    text-align: center;
+    color: #08f513;
+    font-style: italic;
+}
+
+/* Estilo para el ícono flotante */
+.title-icon {
+    margin-right: 15px;
+    font-size: 50px;
+    color: #52fade;
+    animation: floating 2s ease-in-out infinite;
+}
+
+/* Animación flotante */
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para la información de IP */
+.alert-info {
+    font-weight: normal;
+    color: #52fade;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoreo de Tráfico de Red</title>
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="/static/monialert.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="terminal-container">
+        
+        <h1 class="title">
+            <i class="fa fa-globe title-icon"></i>
+            MONITOREO DE TRÁFICO DE RED
+            
+            <i class="fa fa-globe title-icon"></i>
+        </h1>
+        
+        
+        <p class="subtitle">Detecta actividad sospechosa en tiempo real</p>
+
+        <button onclick="startMonitoring()" class="btn">Iniciar Monitoreo</button>
+        <a href="/" class="btn back"  onclick="clearAlerts()">Volver al Menú</a>
+
+        <div class="console" id="alert-container">
+            
+            <h3 class="alert-title">
+                <img id="police-siren" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-siren-police-flaticons-lineal-color-flat-icons.png" alt="Police Siren">
+                Alertas Recientes:
+                <img id="police-siren" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-siren-police-flaticons-lineal-color-flat-icons.png" alt="Police Siren">
+            </h3>
+            <div id="network_alerts" class="console-output">
+                <!-- Alertas en tiempo real -->
+                 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let monitoringStarted = false; // Variable para controlar cuándo mostrar el mensaje
+
+function startMonitoring() {
+    fetch('/network_monitoring')
+        .then(response => {
+            document.getElementById('alert-container').style.display = 'block';
+            monitoringStarted = true; // Solo después de presionar el botón
+            fetchAlerts();
+        })
+        .catch(error => console.log(error));
+}
+function fetchAlerts() {
+    fetch('/get_alerts')
+        .then(response => response.json())
+        .then(data => {
+            let networkAlertsDiv = document.getElementById('network_alerts');
+            networkAlertsDiv.innerHTML = ''; // Limpiar las alertas anteriores
+
+            if (monitoringStarted) { // Solo muestra el mensaje si ya se presionó el botón
+                if (data.network_alerts.length === 0) {
+                    let noAlertElem = document.createElement('p');
+                    noAlertElem.textContent = "> No se detectaron amenazas en la red.";
+                    noAlertElem.classList.add("no-alert");
+                    networkAlertsDiv.appendChild(noAlertElem);
+                } else {
+                    data.network_alerts.forEach(alert => {
+                        let alertElem = document.createElement('div');
+                        alertElem.classList.add("alert-line");
+
+                        // Asignamos la clase dependiendo del tipo de alerta
+                        if (alert.title.includes("Escaneo de puertos")) {
+                            alertElem.classList.add("port-scan-alert");
+                        } else if (alert.title.includes("Ping")) {
+                            alertElem.classList.add("ping-alert");
+                        }
+
+                        // Aquí formateamos la alerta correctamente
+                        const alertMessage = `
+                                
+                                <div class="alert-header">
+                                    <i class="alert-icon">${alert.icon}</i> <!-- Icono según el tipo de alerta -->
+                                    <span class="alert-title">${alert.title}</span> <!-- Título de la alerta -->
+                                </div>
+                                <div class="alert-body">
+                                    <div class="alert-ips">
+                                        <div class="alert-origin"><strong>Origen:</strong> <span class="alert-info">${alert.src_ip}</span></div>
+                                        <div class="alert-destination"><strong>Destino:</strong> <span class="alert-info">${alert.dst_ip}</span></div>
+                                    </div>
+                                </div>
+                            
+                        `;
+                        alertElem.innerHTML = alertMessage;
+                        networkAlertsDiv.appendChild(alertElem);
+                    });
+                }
+            }
+        })
+        .catch(error => console.log(error));
+}
+
+
+    setInterval(fetchAlerts, 3000);
+
+    function clearAlerts() {
+    fetch('/clear_alerts', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                // Limpiar las alertas en el frontend
+                document.getElementById('alert-container').style.display = 'none';
+                
+                // Redirigir al menú o hacer lo que necesites
+                window.location.href = '/'; // Redirige al menú o la página principal
+            }
+        })
+        .catch(error => console.log(error));
+}
+
+    </script>
+</body>
+</html>

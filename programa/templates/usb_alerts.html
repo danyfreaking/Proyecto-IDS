@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas de Dispositivos USB</title>
+    <link rel="stylesheet" href="/static/alert_usb.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="terminal-container">
+       
+        <h1 class="title">  <i class="fas fa-laptop title-icon"></i>
+            Alertas de Dispositivos USB
+                <i class="fas fa-memory title-icon"></i> 
+            
+        </h1>
+
+         <div class="button-container">
+            <a href="/usb_alerts" class="btn update">Actualizar</a>
+            <a href="/" class="btn back">Volver al Menú</a>
+        </div>
+
+        <h2 class="subtitle">Dispositivos Autorizados</h2>
+        <ul class="device-list">
+            {% for device in authorized_devices %}
+            <li class="device-item autorizado">
+                <div class="device-info">
+                    <!-- Muestra el número del dispositivo (#) y su ID -->
+                    <p><strong>#{{ loop.index }} - ID:</strong> {{ device.device_id }}</p>
+                    <p><strong>Descripción:</strong> {{ device.description }}</p>
+                    <!-- Muestra la descripción del dispositivo -->
+                </div>
+                <div class="device-status">✔ Autorizado</div>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <h2 class="subtitle">Dispositivos Maliciosos</h2>
+        <ul class="device-list">
+            {% for device in malicious_devices %}
+            <!-- Recorre cada dispositivo en la lista de dispositivos maliciosos -->
+            <li class="device-item malicioso">
+                <div class="device-info">
+                    <p><strong>#{{ loop.index }} - ID:</strong> {{ device.device_id }}</p>
+                    <p><strong>Descripción:</strong> {{ device.description }}</p>
+                </div>
+                <div class="device-status">⚠ Malicioso</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

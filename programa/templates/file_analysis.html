@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Archivos en Busca de Malware</title>
+    <link rel="stylesheet" href="/static/file_analysis.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="terminal-container">
+        <!-- Botón para regresar al menú -->
+       
+        <h1 class="title">
+            <i class="fas fa-shield-virus title-icon"></i> 
+            Análisis de Archivos en Busca de Malware
+
+      
+            
+            <i class="fas fa-shield-virus title-icon"></i> 
+        </h1>
+
+        <h2 class="subtitle">Subir archivo para análisis</h2>
+
+        <!-- Formulario para cargar el archivo -->
+        <div class="form-container">
+            <form action="/file_analysis" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <div class="button-container">
+                    <button type="submit" class="btn">Subir archivo</button>
+                    <a href="/" class="btn back">Volver al menú</a>
+                    
+                </div>
+            </form>
+        </div>
+
+        {% if file_name %}
+            <!-- Resultado del análisis -->
+            <div class="console">
+                <div class="console-output">
+                    <!-- Muestra el nombre del archivo que se está analizando -->
+                    <h3>Resultado para: {{ file_name }}</h3> 
+                    <div class="alert-line {% if file_status == 'Archivo seguro.' %}safe{% elif 'Malicioso' in file_status %}danger{% else %}unknown{% endif %}">
+                         <!-- Si el estado del archivo es seguro, se agrega la clase 'safe'. Si es malicioso, 'danger', si no es reconocido, 'unknown'. -->
+                        <div class="alert-header">
+                            <div class="alert-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="alert-title">{{ file_status }}</div>
+                            <!-- Muestra el estado del archivo (por ejemplo, 'Archivo seguro.' o 'Malicioso') -->
+                        </div>
+
+                        <div class="alert-body">
+                            <p><span>Hash SHA-256:</span> {{ file_hash }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %} <!--fin del analisis-->
+
+    </div>
+
+</body>
+</html>
