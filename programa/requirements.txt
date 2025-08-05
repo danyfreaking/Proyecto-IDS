@@ -1,6 +1,5 @@
-flask==2.2.5
-scapy==2.5.0
-pyusb==1.2.1
-python-nmap==0.7.1
-Werkzeug==2.2.3
-Jinja2==3.1.2
+flask
+scapy
+pywin32
+requests
+PyPDF2
